@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>jp.hatenadiary.satoshin21</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>485C9F5F-B5CF-4EF0-92F1-54D820583258</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>20BF6E7F-A6B4-4FA9-B4BC-7B98CF611389</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>8C39F8CB-A4A7-442E-A0BE-BAD09B80D9C4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>21E57D5A-345D-4B74-AE51-1BC083CAF0C5</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A589DD47-B43C-4957-8464-7B2247AB92B2</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>EAA0DD50-D7AF-4BCA-ACD3-B6A6ADC8AF2E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AF827DAE-B769-48C5-8E40-4483F2DBC344</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>20BF6E7F-A6B4-4FA9-B4BC-7B98CF611389</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>BD47F902-1753-4489-A69B-2609F37FDA75</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7E19EC28-2CE8-46E4-98ED-7206746117D8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>SatoshiN21</string>
+	<key>description</key>
+	<string>Search Bear and Create Bear note with tags and content of a web page</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Bear(create,search,grab-url)</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>br creates title</string>
+				<key>subtext</key>
+				<string>create note with title "{query}"</string>
+				<key>text</key>
+				<string>create with title</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>8C39F8CB-A4A7-442E-A0BE-BAD09B80D9C4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on run
+	set theQuery to do shell script "ruby -r cgi -e 'puts CGI.escape(\"" &amp; "{query}" &amp; "\")'"
+	set queryUrl to "bear://x-callback-url/create?title=" &amp; theQuery	open location "bear://x-callback-url/search?term=" 
+	open location queryUrl
+	tell application "Bear" to activate
+end run</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>21E57D5A-345D-4B74-AE51-1BC083CAF0C5</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>br creates tags</string>
+				<key>subtext</key>
+				<string>create note with comma separated tags {query}</string>
+				<key>text</key>
+				<string>create with tags</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>A589DD47-B43C-4957-8464-7B2247AB92B2</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on run
+	set theQuery to do shell script "ruby -r cgi -e 'puts CGI.escape(\"" &amp; "{query}" &amp; "\")'"
+	set queryUrl to "bear://x-callback-url/create?tags=" &amp; theQuery	open location "bear://x-callback-url/search?term="
+	open location queryUrl	tell application "Bear" to activate
+end run</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>EAA0DD50-D7AF-4BCA-ACD3-B6A6ADC8AF2E</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on run
+	set theQuery to do shell script "ruby -r cgi -e 'puts CGI.escape(\"" &amp; "{query}" &amp; "\")'"
+	set queryUrl to "bear://x-callback-url/search?term=" &amp; theQuery	open location queryUrl	tell application "Bear" to activate
+end run</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7E19EC28-2CE8-46E4-98ED-7206746117D8</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>br search</string>
+				<key>subtext</key>
+				<string>search results in bear for {query}</string>
+				<key>text</key>
+				<string>search</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>BD47F902-1753-4489-A69B-2609F37FDA75</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>br grab-url</string>
+				<key>subtext</key>
+				<string>Create a new note with web page opened in active browzer</string>
+				<key>text</key>
+				<string>grab-url</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>AF827DAE-B769-48C5-8E40-4483F2DBC344</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>on run
+-- set theQuery to "{query}"tell application "System Events" to set frontApp to name of first process whose frontmost is trueif (frontApp = "Safari") or (frontApp = "Webkit") then	using terms from application "Safari"		tell application frontApp to set currentTabUrl to URL of front document		-- tell application frontApp to set currentTabTitle to name of front document	end using terms fromelse if (frontApp = "Google Chrome") or (frontApp = "Google Chrome Canary") or (frontApp = "Chromium") then	using terms from application "Google Chrome"		tell application frontApp to set currentTabUrl to URL of active tab of front window		-- tell application frontApp to set currentTabTitle to title of active tab of front window	end using terms fromelse	display notification with title frontApp &amp; " is not Suuported" subtitle "You need bring Chrome or Safari to the front"	returnend ifset queryUrl to "bear://x-callback-url/grab-url?url=" &amp; currentTabUrl
+set tags to do shell script "ruby -r cgi -e 'puts CGI.escape(\"" &amp; "{query}" &amp; "\")'"if tags is not "" then
+set queryUrl to queryUrl &amp; "&amp;tags=" &amp; tags
+end if
+
+open location "bear://x-callback-url/search?term=\"\""open location queryUrl
+tell application "Bear" to activate
+end run</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>20BF6E7F-A6B4-4FA9-B4BC-7B98CF611389</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>br grab-url tags</string>
+				<key>subtext</key>
+				<string>Create a new note with web page opened in active browzer and tag for {query}</string>
+				<key>text</key>
+				<string>grab-url with tag</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>485C9F5F-B5CF-4EF0-92F1-54D820583258</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>20BF6E7F-A6B4-4FA9-B4BC-7B98CF611389</key>
+		<dict>
+			<key>xpos</key>
+			<integer>350</integer>
+			<key>ypos</key>
+			<integer>500</integer>
+		</dict>
+		<key>21E57D5A-345D-4B74-AE51-1BC083CAF0C5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>350</integer>
+			<key>ypos</key>
+			<integer>80</integer>
+		</dict>
+		<key>485C9F5F-B5CF-4EF0-92F1-54D820583258</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>140</integer>
+			<key>ypos</key>
+			<integer>650</integer>
+		</dict>
+		<key>7E19EC28-2CE8-46E4-98ED-7206746117D8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>350</integer>
+			<key>ypos</key>
+			<integer>340</integer>
+		</dict>
+		<key>8C39F8CB-A4A7-442E-A0BE-BAD09B80D9C4</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>10</integer>
+			<key>xpos</key>
+			<integer>140</integer>
+			<key>ypos</key>
+			<integer>80</integer>
+		</dict>
+		<key>A589DD47-B43C-4957-8464-7B2247AB92B2</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>10</integer>
+			<key>xpos</key>
+			<integer>140</integer>
+			<key>ypos</key>
+			<integer>210</integer>
+		</dict>
+		<key>AF827DAE-B769-48C5-8E40-4483F2DBC344</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>140</integer>
+			<key>ypos</key>
+			<integer>500</integer>
+		</dict>
+		<key>BD47F902-1753-4489-A69B-2609F37FDA75</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>1</integer>
+			<key>xpos</key>
+			<integer>140</integer>
+			<key>ypos</key>
+			<integer>340</integer>
+		</dict>
+		<key>EAA0DD50-D7AF-4BCA-ACD3-B6A6ADC8AF2E</key>
+		<dict>
+			<key>xpos</key>
+			<integer>350</integer>
+			<key>ypos</key>
+			<integer>210</integer>
+		</dict>
+	</dict>
+	<key>version</key>
+	<string>1.2</string>
+	<key>webaddress</key>
+	<string>https://github.com/SatoshiN21</string>
+</dict>
+</plist>
